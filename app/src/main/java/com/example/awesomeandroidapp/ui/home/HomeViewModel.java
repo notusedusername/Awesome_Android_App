@@ -9,8 +9,9 @@ public class HomeViewModel extends ViewModel {
     private MutableLiveData<String> mText;
 
     public HomeViewModel() {
+        //todo get nick from db
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("Tap to set your nickname!");
     }
 
     public LiveData<String> getText() {
