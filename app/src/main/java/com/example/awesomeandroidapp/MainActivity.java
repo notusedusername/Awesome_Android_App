@@ -8,8 +8,10 @@ import com.example.awesomeandroidapp.ui.home.HomeViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.util.Log;
 import android.view.View;
 
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -75,8 +77,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void submitNickname(View view) {
         EditText nickname = findViewById(R.id.nickname_edit);
-        TextView textView = findViewById(R.id.text_home);
-        textView.setText(nickname.getText());
+        HomeViewModel homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        homeViewModel.setText(nickname.getText().toString());
+        Log.d(MainActivity.class.getSimpleName(), "Username: "+nickname.getText().toString());
         switchNameEditor(View.INVISIBLE);
     }
 }
