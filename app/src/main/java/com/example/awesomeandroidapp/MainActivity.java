@@ -9,6 +9,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 
 import androidx.lifecycle.ViewModelProviders;
@@ -25,6 +26,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -68,9 +71,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void modifyNickname(View view) {
         switchNameEditor(View.VISIBLE);
+        setDoneAction();
     }
 
-    public void switchNameEditor(int visibility){
+    private void switchNameEditor(int visibility){
         LinearLayout editNick = findViewById(R.id.editNickname);
         editNick.setVisibility(visibility);
     }
@@ -81,5 +85,26 @@ public class MainActivity extends AppCompatActivity {
         homeViewModel.setText(nickname.getText().toString());
         Log.d(MainActivity.class.getSimpleName(), "Username: "+nickname.getText().toString());
         switchNameEditor(View.INVISIBLE);
+        hideKeyboard(nickname);
+    }
+
+    private void hideKeyboard(EditText editText){
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+    }
+
+    private void setDoneAction() {
+        EditText edit_txt = findViewById(R.id.nickname_edit);
+        edit_txt.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    findViewById(R.id.Submit).performClick();
+                    Log.d(MainActivity.class.getSimpleName(), "Submitted with keyboard.");
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 }
