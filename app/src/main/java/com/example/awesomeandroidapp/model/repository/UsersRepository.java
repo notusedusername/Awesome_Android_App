@@ -28,10 +28,10 @@ public class UsersRepository {
         return lastUser;
     }
 
-    private class InsertUserAsyncTask extends AsyncTask<Users, Void, Void> {
+    private static class InsertUserAsyncTask extends AsyncTask<Users, Void, Void> {
         private UsersDao usersDao;
 
-        public InsertUserAsyncTask(UsersDao usersDao) {
+        InsertUserAsyncTask(UsersDao usersDao) {
             this.usersDao = usersDao;
         }
 

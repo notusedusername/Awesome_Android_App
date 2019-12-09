@@ -30,11 +30,11 @@ public class HistoryRepository {
         return history;
     }
 
-    private class InsertAsyncTask extends AsyncTask<History, Void, Void> {
+    private static class InsertAsyncTask extends AsyncTask<History, Void, Void> {
 
         private HistoryDao historyDao;
 
-        public InsertAsyncTask(HistoryDao historyDao) {
+        InsertAsyncTask(HistoryDao historyDao) {
             this.historyDao = historyDao;
         }
 
