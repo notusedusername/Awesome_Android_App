@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.awesomeandroidapp.R;
 import com.example.awesomeandroidapp.model.Image;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageHolder>
         Image currentImage = images.get(position);
         holder.title.setText(currentImage.getTitle());
         holder.description.setText(currentImage.getDescription());
-        holder.thumbnail.setImageBitmap(currentImage.getThumbnail());
+        ImageLoader.getInstance().displayImage(currentImage.getThumbnailUrl(), holder.thumbnail);
     }
 
     @Override

@@ -3,6 +3,10 @@ package com.example.awesomeandroidapp.json;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.view.View;
+
+import com.example.awesomeandroidapp.R;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -18,19 +22,17 @@ public class JsonTask extends AsyncTask<String, String, String> {
 
     private static JSONArray jsonArray;
     private ProgressDialog pd;
-    private Context context;
 
-    public JsonTask(Context context) {
-        this.context = context;
-    }
 
-    protected void onPreExecute() {
-        super.onPreExecute();
-
-        pd = new ProgressDialog(context);
-        pd.setMessage("Please wait");
+    public JsonTask(Context contex) {
+        pd = new ProgressDialog(contex);
+        pd.setMessage(contex.getString(R.string.loading_message));
         pd.setCancelable(false);
         pd.show();
+    }
+
+    public static JSONArray getJsonArray(){
+        return jsonArray;
     }
 
     protected String doInBackground(String... params) {
@@ -45,22 +47,14 @@ public class JsonTask extends AsyncTask<String, String, String> {
             URL url = new URL(param);
             connection = (HttpURLConnection) url.openConnection();
             connection.connect();
-
-
             InputStream stream = connection.getInputStream();
-
             reader = new BufferedReader(new InputStreamReader(stream));
-
             StringBuffer buffer = new StringBuffer();
             String line = "";
-
             while ((line = reader.readLine()) != null) {
                 buffer.append(line+"\n");
             }
-
             return buffer.toString();
-
-
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {

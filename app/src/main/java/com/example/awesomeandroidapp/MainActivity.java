@@ -18,6 +18,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -64,7 +66,9 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        new JsonTask(MainActivity.this).execute("https://jsonplaceholder.typicode.com/photos");
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+			.build();
+        ImageLoader.getInstance().init(config);
     }
 
     @Override

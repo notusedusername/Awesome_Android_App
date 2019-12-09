@@ -14,8 +14,13 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.awesomeandroidapp.MainActivity;
 import com.example.awesomeandroidapp.R;
+import com.example.awesomeandroidapp.json.JsonTask;
+import com.example.awesomeandroidapp.model.Image;
 import com.example.awesomeandroidapp.ui.gallery.adapter.ImageAdapter;
+
+import java.util.List;
 
 public class GalleryFragment extends Fragment {
 
@@ -23,26 +28,24 @@ public class GalleryFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         galleryViewModel =
                 ViewModelProviders.of(this).get(GalleryViewModel.class);
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-
+        new JsonTask(getContext()).execute("https://jsonplaceholder.typicode.com/photos");
         RecyclerView recyclerView = root.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(false);
 
         final ImageAdapter adapter = new ImageAdapter();
         recyclerView.setAdapter(adapter);
-        /*
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(this, new Observer<String>() {
+
+        galleryViewModel.getImages().observe(this, new Observer<List<Image>>() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onChanged(List<Image> images) {
+                adapter.setImages(images);
             }
         });
-
-         */
         return root;
     }
 }

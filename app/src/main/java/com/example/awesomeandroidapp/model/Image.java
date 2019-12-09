@@ -1,7 +1,5 @@
 package com.example.awesomeandroidapp.model;
 
-import android.graphics.Bitmap;
-
 public class Image {
 
     private int id;
@@ -63,9 +61,4 @@ public class Image {
         this.thumbnailUrl = thumbnailUrl;
     }
 
-
-    public Bitmap getThumbnail() {
-        //resolve thumbnail url
-        return null;
-    }
 }
