@@ -13,6 +13,9 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.awesomeandroidapp.R;
+import com.example.awesomeandroidapp.model.History;
+
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -24,12 +27,20 @@ public class HomeFragment extends Fragment {
                 ViewModelProviders.of(getActivity()).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(this, new Observer<String>() {
+        homeViewModel.getLastUsername().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
         });
+
+        homeViewModel.getHistory().observe(this, new Observer<List<History>>() {
+            @Override
+            public void onChanged(List<History> histories) {
+                //do the harlem shake
+            }
+        });
+
         return root;
     }
 }

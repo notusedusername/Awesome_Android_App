@@ -3,6 +3,8 @@ package com.example.awesomeandroidapp.model.repository;
 import android.app.Application;
 import android.os.AsyncTask;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.awesomeandroidapp.model.Users;
 import com.example.awesomeandroidapp.model.dao.UsersDao;
 import com.example.awesomeandroidapp.model.database.AwesomeDatabase;
@@ -10,7 +12,7 @@ import com.example.awesomeandroidapp.model.database.AwesomeDatabase;
 public class UsersRepository {
 
     private UsersDao usersDao;
-    private String lastUser;
+    private LiveData<String> lastUser;
 
     public UsersRepository(Application application){
         AwesomeDatabase database = AwesomeDatabase.getInstance(application);
@@ -22,7 +24,7 @@ public class UsersRepository {
         new InsertUserAsyncTask(usersDao).execute(users);
     }
 
-    public String getLastUser(){
+    public LiveData<String> getLastUser(){
         return lastUser;
     }
 

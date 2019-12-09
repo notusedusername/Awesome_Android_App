@@ -1,27 +1,46 @@
 package com.example.awesomeandroidapp.ui.home;
 
+import android.app.Application;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import com.example.awesomeandroidapp.model.History;
+import com.example.awesomeandroidapp.model.Users;
+import com.example.awesomeandroidapp.model.repository.HistoryRepository;
+import com.example.awesomeandroidapp.model.repository.UsersRepository;
 
-public class HomeViewModel extends ViewModel {
+import java.util.List;
 
-    private MutableLiveData<String> mText;
+public class HomeViewModel extends AndroidViewModel {
 
-    public HomeViewModel() {
-        //todo get nick from db
-        mText = new MutableLiveData<>();
-        mText.setValue("Tap to set your nickname!");
-        Log.d(HomeViewModel.class.getSimpleName(), "Constructed");
+    private UsersRepository usersRepository;
+    private HistoryRepository historyRepository;
+    private LiveData<List<History>> history;
+    private LiveData<String> lastUsername;
+
+    public HomeViewModel(@NonNull Application application) {
+        super(application);
+
+        historyRepository = new HistoryRepository(application);
+        history = historyRepository.fetch();
+
+        usersRepository = new UsersRepository(application);
+        lastUsername = usersRepository.getLastUser();
     }
 
-    public void setText(String text) {
-        this.mText.setValue(text);
+    public void insertUsername(Users user){
+        usersRepository.insert(user);
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<String> getLastUsername(){
+        return lastUsername;
     }
+
+    public LiveData<List<History>> getHistory(){
+        return history;
+    }
+
 }

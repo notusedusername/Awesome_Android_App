@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+ /*
     public void modifyNickname(View view) {
         switchNameEditor(true);
         setDoneAction();
@@ -125,6 +126,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+*/
 }
 
