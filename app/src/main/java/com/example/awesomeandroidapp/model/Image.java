@@ -1,12 +1,9 @@
 package com.example.awesomeandroidapp.model;
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import android.graphics.Bitmap;
 
-@Entity(tableName = "history")
-public class History {
+public class Image {
 
-    @PrimaryKey(autoGenerate = true)
     private int id;
 
     private String title;
@@ -17,7 +14,8 @@ public class History {
 
     private String thumbnailUrl;
 
-    public History(int id, String title, String description, String url, String thumbnailUrl) {
+
+    public Image(int id, String title, String description, String url, String thumbnailUrl) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -63,5 +61,11 @@ public class History {
 
     public void setThumbnailUrl(String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
+    }
+
+
+    public Bitmap getThumbnail() {
+        //resolve thumbnail url
+        return null;
     }
 }

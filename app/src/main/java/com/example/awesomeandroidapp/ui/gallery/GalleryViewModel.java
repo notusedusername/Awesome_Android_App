@@ -1,19 +1,25 @@
 package com.example.awesomeandroidapp.ui.gallery;
 
+import android.app.Application;
+
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+import com.example.awesomeandroidapp.model.History;
+import com.example.awesomeandroidapp.model.repository.HistoryRepository;
 
-    private MutableLiveData<String> mText;
+public class GalleryViewModel extends AndroidViewModel {
 
-    public GalleryViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+    private HistoryRepository historyRepository;
+
+    public GalleryViewModel(Application application) {
+        super(application);
+        historyRepository = new HistoryRepository(application);
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void insert(History history){
+        historyRepository.insert(history);
     }
 }
