@@ -31,10 +31,6 @@ public class HomeViewModel extends AndroidViewModel {
         lastUsername = usersRepository.getLastUser();
     }
 
-    public void insertUsername(Users user){
-        usersRepository.insert(user);
-    }
-
     public LiveData<String> getLastUsername(){
         return lastUsername;
     }

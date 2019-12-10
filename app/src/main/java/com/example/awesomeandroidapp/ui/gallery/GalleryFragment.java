@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.awesomeandroidapp.MainActivity;
 import com.example.awesomeandroidapp.R;
 import com.example.awesomeandroidapp.json.JsonTask;
+import com.example.awesomeandroidapp.model.History;
 import com.example.awesomeandroidapp.model.Image;
 import com.example.awesomeandroidapp.ui.gallery.adapter.ImageAdapter;
 
@@ -39,7 +40,12 @@ public class GalleryFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
-        final ImageAdapter adapter = new ImageAdapter();
+        final ImageAdapter adapter = new ImageAdapter(new ImageAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Image image) {
+                galleryViewModel.insert(new History(image));
+            }
+        });
         recyclerView.setAdapter(adapter);
 
         galleryViewModel.getImages().observe(this, new Observer<List<Image>>() {

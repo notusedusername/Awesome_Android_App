@@ -11,7 +11,7 @@ import com.example.awesomeandroidapp.model.Users;
 import com.example.awesomeandroidapp.model.dao.HistoryDao;
 import com.example.awesomeandroidapp.model.dao.UsersDao;
 
-@Database(entities = {History.class, Users.class}, version = 1, exportSchema = false)
+@Database(entities = {History.class, Users.class}, version = 2, exportSchema = false)
 public abstract class AwesomeDatabase extends RoomDatabase {
 
     private static AwesomeDatabase instance;

@@ -14,6 +14,6 @@ public interface HistoryDao {
     @Insert
     void insert(History history);
 
-    @Query("SELECT * FROM HISTORY LIMIT 10")
+    @Query("SELECT * FROM HISTORY GROUP BY PHOTOID ORDER BY ID DESC LIMIT 10")
     LiveData<List<History>>fetch();
 }

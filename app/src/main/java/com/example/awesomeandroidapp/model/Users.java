@@ -1,5 +1,7 @@
 package com.example.awesomeandroidapp.model;
 
+import android.text.Editable;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -14,6 +16,10 @@ public class Users {
     public Users(int id, String username) {
         this.id = id;
         this.username = username;
+    }
+
+    public Users(String text) {
+        this.username = text;
     }
 
     public int getId() {

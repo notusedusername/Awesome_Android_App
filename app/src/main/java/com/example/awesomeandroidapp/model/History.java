@@ -9,6 +9,8 @@ public class History {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
+    private int photoId;
+
     private String title;
 
     private String description;
@@ -17,12 +19,29 @@ public class History {
 
     private String thumbnailUrl;
 
-    public History(int id, String title, String description, String url, String thumbnailUrl) {
+    public History(int id, int photoId, String title, String description, String url, String thumbnailUrl) {
         this.id = id;
+        this.photoId = photoId;
         this.title = title;
         this.description = description;
         this.url = url;
         this.thumbnailUrl = thumbnailUrl;
+    }
+
+    public History(Image image) {
+        this.photoId = image.getId();
+        this.title = image.getTitle();
+        this.description = image.getDescription();
+        this.url = image.getUrl();
+        this.thumbnailUrl = image.getThumbnailUrl();
+    }
+
+    public int getPhotoId() {
+        return photoId;
+    }
+
+    public void setPhotoId(int photoId) {
+        this.photoId = photoId;
     }
 
     public int getId() {
