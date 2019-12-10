@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -44,6 +45,7 @@ public class GalleryFragment extends Fragment {
             @Override
             public void onItemClick(Image image) {
                 galleryViewModel.insert(new History(image));
+                Toast.makeText(getContext(), R.string.like, Toast.LENGTH_SHORT).show();
             }
         });
         recyclerView.setAdapter(adapter);
