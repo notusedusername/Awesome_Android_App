@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Awesome Android App</string>
+    <string name="action_settings">Beállítások</string>
+    <string name="loading_message">Kérlek várj...</string>
+    <string name="menu_gallery">Galéria</string>
+    <string name="menu_home">Főoldal</string>
+    <string name="nav_header_desc">Navigáció fejléc</string>
+    <string name="navigation_drawer_close">Bezárja a navigációs oldal</string>
+    <string name="navigation_drawer_open">Kinyitja a navigációs oldalt</string>
+    <string name="recent">Nemrég kedvelt</string>
+    <string name="like">Kedveltnek jelölve.</string>
+    <string name="submit">Beállít</string>
+    <string name="welcome">Üdvözöllek</string>
+    <string name="your_nickname">A beceneved</string>
+</resources>

@@ -11,5 +11,6 @@
     <string name="your_nickname">Your nickname</string>
     <string name="welcome">Welcome</string>
     <string name="loading_message">Please wait</string>
-    <string name="recent">Recent</string>
+    <string name="recent">Recenty liked</string>
+    <string name="like">You liked this image.</string>
 </resources>
