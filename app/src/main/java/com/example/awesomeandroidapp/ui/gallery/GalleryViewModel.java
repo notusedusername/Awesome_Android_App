@@ -17,10 +17,13 @@ import java.util.List;
 public class GalleryViewModel extends AndroidViewModel {
 
     private HistoryRepository historyRepository;
+    private LiveData<List<Image>> images;
 
     public GalleryViewModel(Application application) {
         super(application);
         historyRepository = new HistoryRepository(application);
+        images = new JsonData().getImages();
+
     }
 
     public void insert(History history){
@@ -28,6 +31,6 @@ public class GalleryViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Image>> getImages(){
-        return new JsonData().getImages();
+        return images;
     }
 }

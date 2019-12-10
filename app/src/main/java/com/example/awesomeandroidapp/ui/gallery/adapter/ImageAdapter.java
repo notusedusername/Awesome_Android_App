@@ -7,10 +7,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.awesomeandroidapp.R;
 import com.example.awesomeandroidapp.model.Image;
+import com.example.awesomeandroidapp.ui.gallery.adapter.util.DiffUtilCallback;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -42,8 +44,10 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageHolder>
     }
 
     public void setImages(List<Image> images){
-        this.images = images;
-        notifyDataSetChanged();
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffUtilCallback(this.images, images));
+        diffResult.dispatchUpdatesTo(this);
+        this.images.clear();
+        this.images.addAll(images);
     }
 
     class ImageHolder extends RecyclerView.ViewHolder{

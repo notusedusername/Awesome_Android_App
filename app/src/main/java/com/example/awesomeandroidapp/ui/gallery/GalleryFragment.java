@@ -1,6 +1,7 @@
 package com.example.awesomeandroidapp.ui.gallery;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,9 +34,10 @@ public class GalleryFragment extends Fragment {
                 ViewModelProviders.of(this).get(GalleryViewModel.class);
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
         new JsonTask(getContext()).execute("https://jsonplaceholder.typicode.com/photos");
+
         RecyclerView recyclerView = root.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setHasFixedSize(false);
+        recyclerView.setHasFixedSize(true);
 
         final ImageAdapter adapter = new ImageAdapter();
         recyclerView.setAdapter(adapter);
@@ -48,4 +50,6 @@ public class GalleryFragment extends Fragment {
         });
         return root;
     }
+
+
 }
