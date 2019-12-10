@@ -23,7 +23,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         nickname = findViewById(R.id.editText);
         settingsViewModel = ViewModelProviders.of(this).get(SettingsViewModel.class);
-        nickname.setText(settingsViewModel.getLastUsername().getValue());
+        //nickname.setText(settingsViewModel.getLastUsername().getValue());
 
     }
 
