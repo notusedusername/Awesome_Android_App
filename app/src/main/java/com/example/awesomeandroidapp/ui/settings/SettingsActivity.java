@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.awesomeandroidapp.MainActivity;
@@ -23,7 +24,9 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         nickname = findViewById(R.id.editText);
         settingsViewModel = ViewModelProviders.of(this).get(SettingsViewModel.class);
-        //nickname.setText(settingsViewModel.getLastUsername().getValue());
+        settingsViewModel.getLastUsername().observe(this, s -> {
+            //nickname.setText(s);
+        });
 
     }
 
