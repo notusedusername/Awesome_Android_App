@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
+
 import com.example.awesomeandroidapp.model.History;
 import com.example.awesomeandroidapp.model.Users;
 import com.example.awesomeandroidapp.model.repository.HistoryRepository;
@@ -23,12 +25,11 @@ public class HomeViewModel extends AndroidViewModel {
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
-
         historyRepository = new HistoryRepository(application);
         history = historyRepository.fetch();
 
         usersRepository = new UsersRepository(application);
-        lastUsername = usersRepository.getLastUser();
+        lastUsername = Transformations.map(usersRepository.getLastUser(), user -> user + "!!!");
     }
 
     public LiveData<String> getLastUsername(){
