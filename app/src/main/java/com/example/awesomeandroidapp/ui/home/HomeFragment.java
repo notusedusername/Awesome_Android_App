@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.awesomeandroidapp.R;
+import com.example.awesomeandroidapp.databinding.FragmentHomeBinding;
 import com.example.awesomeandroidapp.model.History;
 import com.example.awesomeandroidapp.model.Image;
 import com.example.awesomeandroidapp.ui.fullscreen.DetailsFragment;
@@ -34,6 +36,8 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 ViewModelProviders.of(getActivity()).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+        FragmentHomeBinding binding = FragmentHomeBinding.inflate(inflater, container, true);
+        binding.setViewmodel(homeViewModel);
         final TextView textView = root.findViewById(R.id.text_home);
         final TextView nick = root.findViewById(R.id.user_in_header);
         homeViewModel.getLastUsername().observe(this, new Observer<String>() {

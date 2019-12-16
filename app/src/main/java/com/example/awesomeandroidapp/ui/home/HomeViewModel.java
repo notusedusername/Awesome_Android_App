@@ -22,14 +22,19 @@ public class HomeViewModel extends AndroidViewModel {
     private HistoryRepository historyRepository;
     private LiveData<List<History>> history;
     private LiveData<String> lastUsername;
+    private String bind;
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
         historyRepository = new HistoryRepository(application);
         history = historyRepository.fetch();
-
+        bind = "Lö Data Binding";
         usersRepository = new UsersRepository(application);
         lastUsername = Transformations.map(usersRepository.getLastUser(), user -> user + "!!!");
+    }
+
+    public String getBind() {
+        return bind;
     }
 
     public LiveData<String> getLastUsername(){
