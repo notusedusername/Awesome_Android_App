@@ -47,7 +47,7 @@ public class GalleryFragment extends Fragment {
                 galleryViewModel.insert(new History(image));
                 Toast.makeText(getContext(), R.string.like, Toast.LENGTH_SHORT).show();
             }
-        });
+        }, getContext());
         recyclerView.setAdapter(adapter);
 
         galleryViewModel.getImages().observe(this, new Observer<List<Image>>() {

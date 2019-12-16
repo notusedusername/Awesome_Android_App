@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.awesomeandroidapp.model.Image;
+import com.example.awesomeandroidapp.ui.gallery.adapter.Header;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,6 +20,7 @@ public class JsonData {
     private List<Image> images = new ArrayList<>();
 
     public JsonData(){
+        addHeader();
         JSONArray photoList = JsonTask.getJsonArray();
         if(photoList != null){
             for(int i = 0; i < photoList.length(); i++ ){
@@ -35,6 +37,10 @@ public class JsonData {
                 }
             }
         }
+    }
+
+    private void addHeader() {
+        images.add(new Header("Awesome Header", "Noice", "https://worldofwonder.net/wp-content/uploads/2019/11/awesome-Rect-1024x781-1000x763.jpg"));
     }
 
     public LiveData<List<Image>> getImages() {

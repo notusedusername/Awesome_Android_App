@@ -51,7 +51,7 @@ public class HomeFragment extends Fragment {
             public void onItemClick(Image image) {
                 //useful functionality
             }
-        });
+        }, getContext());
         recyclerView.setAdapter(adapter);
 
         homeViewModel.getHistory().observe(this, new Observer<List<History>>() {
