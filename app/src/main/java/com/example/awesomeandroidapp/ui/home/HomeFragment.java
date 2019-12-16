@@ -1,5 +1,6 @@
 package com.example.awesomeandroidapp.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.awesomeandroidapp.R;
 import com.example.awesomeandroidapp.model.History;
 import com.example.awesomeandroidapp.model.Image;
+import com.example.awesomeandroidapp.ui.fullscreen.DetailsFragment;
 import com.example.awesomeandroidapp.ui.gallery.adapter.ImageAdapter;
 
 import java.util.ArrayList;
@@ -50,6 +52,11 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(Image image) {
                 //useful functionality
+            }
+        }, new ImageAdapter.OnItemLongClickListener() {
+            @Override
+            public void onItemClick(Image image) {
+
             }
         }, getContext());
         recyclerView.setAdapter(adapter);

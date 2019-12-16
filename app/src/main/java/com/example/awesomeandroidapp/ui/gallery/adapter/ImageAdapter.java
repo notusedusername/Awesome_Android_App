@@ -27,10 +27,12 @@ public class ImageAdapter extends RecyclerView.Adapter {
     private List<Image> images = new ArrayList<>();
     private View itemView;
     private final OnItemClickListener listener;
+    private final OnItemLongClickListener longClickListener;
     private Context mContext;
 
-    public ImageAdapter(OnItemClickListener listener, Context mContext) {
+    public ImageAdapter(OnItemClickListener listener, OnItemLongClickListener longClickListener, Context mContext) {
         this.mContext = mContext;
+        this.longClickListener = longClickListener;
         this.listener = listener;
     }
 
@@ -60,6 +62,13 @@ public class ImageAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     listener.onItemClick(images.get(position));
+                }
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    longClickListener.onItemClick(images.get(position));
+                    return true;
                 }
             });
         }
@@ -110,6 +119,10 @@ public class ImageAdapter extends RecyclerView.Adapter {
     }
 
     public interface OnItemClickListener {
+        void onItemClick(Image image);
+    }
+
+    public interface OnItemLongClickListener {
         void onItemClick(Image image);
     }
 
