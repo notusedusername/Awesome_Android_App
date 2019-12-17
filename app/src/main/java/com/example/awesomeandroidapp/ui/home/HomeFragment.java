@@ -35,8 +35,8 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
                 ViewModelProviders.of(getActivity()).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        FragmentHomeBinding binding = FragmentHomeBinding.inflate(inflater, container, true);
+        FragmentHomeBinding binding = FragmentHomeBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
         binding.setViewmodel(homeViewModel);
         final TextView textView = root.findViewById(R.id.text_home);
         final TextView nick = root.findViewById(R.id.user_in_header);
